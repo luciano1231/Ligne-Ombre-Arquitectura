@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Catálogo de Muebles | Carolina Cabral Studio</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+  <div id="loginScreen" class="admin-login">
+    <div class="admin-login__box">
+      <img src="assets/logo.svg" alt="Logo" class="admin-login__logo">
+      <h1 class="admin-login__title">Panel de Administración</h1>
+      <p class="admin-login__sub">Catálogo de Muebles — Carolina Cabral Studio</p>
+      <div class="admin-field">
+        <label class="admin-label">Contraseña</label>
+        <input type="password" id="pwInput" class="admin-input" placeholder="••••••••" onkeydown="if(event.key==='Enter') doLogin()">
+      </div>
+      <button class="btn btn--primary admin-login__btn" onclick="doLogin()">Ingresar</button>
+      <p id="loginError" class="admin-error" style="display:none">Contraseña incorrecta</p>
+    </div>
+  </div>
+
+  <div id="adminPanel" style="display:none">
+    <header class="admin-header">
+      <div class="admin-header__inner">
+        <a href="interiores.html" class="admin-header__logo"><img src="assets/logo.svg" alt="Logo" style="height:48px"></a>
+        <h2 class="admin-header__title">Panel — Catálogo de Muebles</h2>
+        <div class="admin-header__actions">
+          <a href="admin-arq.html" class="btn btn--outline-dark" style="font-size:.74rem;padding:10px 20px">Ir a Arquitectura</a>
+          <button class="btn btn--outline-dark" onclick="doLogout()" style="font-size:.74rem;padding:10px 20px">Cerrar sesión</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="admin-container">
+
+        <section class="admin-card">
+          <h3 class="admin-card__title" id="formTitle">Agregar Mueble</h3>
+          <input type="hidden" id="editId">
+          <div class="admin-grid-2">
+            <div class="admin-field">
+              <label class="admin-label">Nombre del mueble *</label>
+              <input type="text" id="mName" class="admin-input" placeholder="Mesa Río Grande">
+            </div>
+            <div class="admin-field">
+              <label class="admin-label">Categoría *</label>
+              <select id="mCat" class="admin-input">
+                <option value="Mesas">Mesas</option>
+                <option value="Sillas">Sillas</option>
+                <option value="Estanterías">Estanterías</option>
+                <option value="Sillones">Sillones</option>
+                <option value="Escritorios">Escritorios</option>
+                <option value="Otros">Otros</option>
+              </select>
+            </div>
+            <div class="admin-field">
+              <label class="admin-label">Material</label>
+              <input type="text" id="mMaterial" class="admin-input" placeholder="Madera sólida de roble">
+            </div>
+            <div class="admin-field">
+              <label class="admin-label">Imagen (URL o subir archivo)</label>
+              <input type="file" id="mImgFile" class="admin-input" accept="image/*" onchange="previewImage(this,'mPreview')">
+              <input type="text" id="mImgUrl" class="admin-input" placeholder="https://... o dejar vacío si subiste archivo" style="margin-top:8px">
+            </div>
+          </div>
+          <div class="admin-field">
+            <label class="admin-label">Descripción</label>
+            <textarea id="mDesc" class="admin-input admin-textarea" placeholder="Descripción del mueble..."></textarea>
+          </div>
+          <div id="mPreview" class="admin-img-preview" style="display:none">
+            <img id="mPreviewImg" src="" alt="Preview" style="max-height:200px;border-radius:8px;object-fit:cover;">
+          </div>
+          <div class="admin-form-actions">
+            <button class="btn btn--primary" onclick="saveMueble()">Guardar mueble</button>
+            <button class="btn btn--outline-dark" onclick="resetForm()" id="cancelBtn" style="display:none">Cancelar edición</button>
+          </div>
+          <p id="formMsg" class="admin-msg" style="display:none"></p>
+        </section>
+
+        <section class="admin-card">
+          <div class="admin-card__header">
+            <h3 class="admin-card__title">Muebles en catálogo</h3>
+            <span id="countBadge" class="admin-badge">0</span>
+          </div>
+          <div id="muebleList" class="admin-list"></div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="js/admin-muebles.js"></script>
+</body>
+</html>

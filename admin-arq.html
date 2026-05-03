@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Portafolio | Ligne & Ombre Studio</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+  <div id="loginScreen" class="admin-login">
+    <div class="admin-login__box">
+      <img src="assets/logo.svg" alt="Logo" class="admin-login__logo">
+      <h1 class="admin-login__title">Panel de Administración</h1>
+      <p class="admin-login__sub">Portafolio de Arquitectura</p>
+      <div class="admin-field">
+        <label class="admin-label">Contraseña</label>
+        <input type="password" id="pwInput" class="admin-input" placeholder="••••••••" onkeydown="if(event.key==='Enter') doLogin()">
+      </div>
+      <button class="btn btn--primary admin-login__btn" onclick="doLogin()">Ingresar</button>
+      <p id="loginError" class="admin-error" style="display:none">Contraseña incorrecta</p>
+    </div>
+  </div>
+
+  <div id="adminPanel" style="display:none">
+    <header class="admin-header">
+      <div class="admin-header__inner">
+        <a href="index.html" class="admin-header__logo"><img src="assets/logo.svg" alt="Logo" style="height:48px"></a>
+        <h2 class="admin-header__title">Panel — Portafolio</h2>
+        <div class="admin-header__actions">
+          <a href="admin-muebles.html" class="btn btn--outline-dark" style="font-size:.74rem;padding:10px 20px">Ir a Muebles</a>
+          <button class="btn btn--outline-dark" onclick="doLogout()" style="font-size:.74rem;padding:10px 20px">Cerrar sesión</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="admin-container">
+
+        <!-- FORM -->
+        <section class="admin-card">
+          <h3 class="admin-card__title" id="formTitle">Agregar Proyecto</h3>
+          <input type="hidden" id="editId">
+          <div class="admin-grid-2">
+            <div class="admin-field">
+              <label class="admin-label">Título del proyecto *</label>
+              <input type="text" id="pTitle" class="admin-input" placeholder="Residencia Nativa">
+            </div>
+            <div class="admin-field">
+              <label class="admin-label">Categoría *</label>
+              <select id="pCat" class="admin-input">
+                <option value="Residencial">Residencial</option>
+                <option value="Comercial">Comercial</option>
+                <option value="Interiorismo">Interiorismo</option>
+                <option value="Reforma">Reforma</option>
+              </select>
+            </div>
+            <div class="admin-field">
+              <label class="admin-label">Año</label>
+              <input type="text" id="pYear" class="admin-input" placeholder="2024">
+            </div>
+            <div class="admin-field">
+              <label class="admin-label">Imagen (URL o subir archivo)</label>
+              <input type="file" id="pImgFile" class="admin-input" accept="image/*" onchange="previewImage(this,'pPreview')">
+              <input type="text" id="pImgUrl" class="admin-input" placeholder="https://... o dejar vacío si subiste archivo" style="margin-top:8px">
+            </div>
+          </div>
+          <div class="admin-field">
+            <label class="admin-label">Descripción</label>
+            <textarea id="pDesc" class="admin-input admin-textarea" placeholder="Descripción del proyecto..."></textarea>
+          </div>
+          <div id="pPreview" class="admin-img-preview" style="display:none">
+            <img id="pPreviewImg" src="" alt="Preview" style="max-height:200px;border-radius:8px;object-fit:cover;">
+          </div>
+          <div class="admin-form-actions">
+            <button class="btn btn--primary" onclick="saveProject()">Guardar proyecto</button>
+            <button class="btn btn--outline-dark" onclick="resetForm()" id="cancelBtn" style="display:none">Cancelar edición</button>
+          </div>
+          <p id="formMsg" class="admin-msg" style="display:none"></p>
+        </section>
+
+        <!-- LISTA -->
+        <section class="admin-card">
+          <div class="admin-card__header">
+            <h3 class="admin-card__title">Proyectos en portafolio</h3>
+            <span id="countBadge" class="admin-badge">0</span>
+          </div>
+          <div id="projectList" class="admin-list"></div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="js/admin-arq.js"></script>
+</body>
+</html>
