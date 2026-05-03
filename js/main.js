@@ -88,12 +88,14 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── PARALLAX ── */
   const parallaxEls = document.querySelectorAll('[data-parallax]');
   function updateParallax() {
-    const sy = window.scrollY;
     parallaxEls.forEach(el => {
-      const speed  = parseFloat(el.dataset.parallax) || 0.3;
+      const speed  = parseFloat(el.dataset.parallax) || 0.25;
       const rect   = el.getBoundingClientRect();
       const center = rect.top + rect.height / 2;
-      const offset = (center - window.innerHeight / 2) * speed;
+      // Progress goes from 1 (entering bottom) to -1 (leaving top)
+      const progress = (center - window.innerHeight / 2) / (window.innerHeight / 2 + rect.height / 2);
+      // Offset is strictly bounded by the element's height
+      const offset = progress * rect.height * speed;
       el.style.transform = `translateY(${offset}px)`;
     });
     requestAnimationFrame(updateParallax);
