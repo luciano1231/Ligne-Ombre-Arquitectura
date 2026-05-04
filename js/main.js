@@ -90,7 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateParallax() {
     parallaxEls.forEach(el => {
       const speed  = parseFloat(el.dataset.parallax) || 0.25;
-      const rect   = el.getBoundingClientRect();
+      // Use the parent element's rect to avoid reading the transformed bounds of the image itself
+      const parent = el.parentElement;
+      const rect   = parent.getBoundingClientRect();
       const center = rect.top + rect.height / 2;
       // Progress goes from 1 (entering bottom) to -1 (leaving top)
       const progress = (center - window.innerHeight / 2) / (window.innerHeight / 2 + rect.height / 2);
