@@ -117,8 +117,8 @@ body:hover .cursor__circle { opacity: 1; }
   box-shadow: 0 1px 0 rgba(255,255,255,.06);
 }
 .nav__logo { display: flex; align-items: center; gap: 12px; }
-.nav__logo img { height: 68px; width: auto; }
-.nav__logo svg { height: 68px; width: auto; }
+.nav__logo img { height: 54px; width: auto; }
+.nav__logo svg { height: 54px; width: auto; }
 .nav__logo-text {
   font-family: var(--font-display);
   font-size: 1rem;
@@ -313,8 +313,8 @@ body:hover .cursor__circle { opacity: 1; }
   padding-bottom: 40px;
   margin-bottom: 28px;
 }
-.footer__logo img { height: 70px; width: auto; opacity: .9; }
-.footer__logo svg { height: 60px; width: auto; opacity: .85; }
+.footer__logo img { height: 35px; width: auto; opacity: .9; }
+.footer__logo svg { height: 30px; width: auto; opacity: .85; }
 .footer__tagline {
   font-family: var(--font-display);
   font-size: 1.1rem;
@@ -452,6 +452,8 @@ body:hover .cursor__circle { opacity: 1; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
+  .nav__logo img { height: 38px; }
+  .nav__logo svg { height: 38px; }
   .nav__links { display: none; }
   .nav__burger { display: flex; }
   body { cursor: auto; }
