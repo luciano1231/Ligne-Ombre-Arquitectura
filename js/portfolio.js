@@ -11,7 +11,7 @@ const DEFAULT_PROJECTS = [
     category: 'Residencial',
     year: '2023',
     description: 'Casa de 480m² con piscina desbordante integrada al paisaje. Diseño contemporáneo con materiales de primera calidad: vidrio estructural, hormigón visto y madera de roble. Iluminación escénica de noche.',
-    image: 'Imagenes Pagina Arquitectura/ALDEA-REAL-6-1.jpg'
+    image: 'Imagenes Pagina Arquitectura/Proyectos/Residencia/Principal.jpeg'
   },
   {
     id: '2',

@@ -109,6 +109,8 @@ body:hover .cursor__circle { opacity: 1; }
   align-items: center;
   padding: 0 5vw;
   justify-content: space-between;
+  background: rgba(17, 26, 19, 0.4);
+  backdrop-filter: blur(8px);
   transition: background var(--transition), backdrop-filter var(--transition), box-shadow var(--transition);
 }
 .nav.scrolled {
