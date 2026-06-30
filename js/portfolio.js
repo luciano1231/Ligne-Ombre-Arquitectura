@@ -7,42 +7,91 @@ const STORAGE_KEY = 'los_portfolio';
 const DEFAULT_PROJECTS = [
   {
     id: '1',
-    title: 'Residencia Aldea',
-    category: 'Residencial',
+    title: 'Barrio Privado Rancagua',
     year: '2023',
-    description: 'Casa de 480m² con piscina desbordante integrada al paisaje. Diseño contemporáneo con materiales de primera calidad: vidrio estructural, hormigón visto y madera de roble. Iluminación escénica de noche.',
-    image: 'Imagenes Pagina Arquitectura/Proyectos/Residencia/Principal.jpeg'
+    description: 'Un conjunto residencial exclusivo en Rancagua, Chile, donde la arquitectura contemporánea se integra con el paisaje natural. Cada vivienda presenta líneas limpias, amplios ventanales y materiales nobles como piedra y madera, creando espacios luminosos y de alto confort. La ejecución impecable realza la privacidad y la conexión con el entorno.',
+    images: [
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Barrio privado en Rancagua, Chile/WhatsApp Image 2026-06-29 at 19.06.33.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Barrio privado en Rancagua, Chile/2.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Barrio privado en Rancagua, Chile/3.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Barrio privado en Rancagua, Chile/4.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Barrio privado en Rancagua, Chile/5.jpeg'
+    ]
   },
   {
     id: '2',
-    title: 'Atrio Lumínico',
-    category: 'Interiorismo',
-    year: '2023',
-    description: 'Diseño de interior corporativo con atrio central de doble altura. Revestimiento en madera laminada natural, sistema de iluminación cenital y fachada de vidrio estructural que maximiza la luz natural.',
-    image: 'Imagenes Pagina Arquitectura/cool-staircase-with-lights-modern-building.jpg'
+    title: 'Shopping Curicó',
+    year: '2024',
+    description: 'Un centro comercial vanguardista en Curicó, Chile, diseñado para ofrecer una experiencia de compra única. La fachada dinámica combina cristal, acero y volúmenes geométricos, mientras que el interior fluye en espacios abiertos y bien iluminados. Cada detalle constructivo refleja precisión y calidad, desde la estructura hasta los acabados.',
+    images: [
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Shopping en Curico, Chile/centro comercial chile.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Shopping en Curico, Chile/Centro comercial chile2.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Shopping en Curico, Chile/Centro comercial chile3.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Shopping en Curico, Chile/Centro comercial en chile.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Shopping en Curico, Chile/equipo de obras.jpeg'
+    ]
   },
   {
     id: '3',
-    title: 'Torre Meridian',
-    category: 'Comercial',
-    year: '2022',
-    description: 'Edificio de oficinas corporativas de 15 plantas en pleno centro financiero. Fachada de doble piel de vidrio con control solar automatizado y certificación ambiental.',
-    image: 'Imagenes Pagina Arquitectura/arquitectura-moderna-cdmx-header.jpg'
+    title: 'Residencia El Sombrero',
+    year: '2024',
+    description: 'Una vivienda unifamiliar que destaca por su diseño escultórico y su integración con el paisaje. La cubierta singular, de hormigón visto, protege amplios espacios acristalados que difuminan los límites entre interior y exterior. Materiales como la madera y la piedra aportan calidez, mientras que la ejecución precisa garantiza durabilidad y sofisticación.',
+    images: [
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Nueva carpeta/sombrero.jpg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Nueva carpeta/sombrero2.jpg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Nueva carpeta/sombrero3.jpg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Nueva carpeta/sombrero4.jpg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Nueva carpeta/sombrero5.jpg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Nueva carpeta/fachadaGuille.0001.png',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Nueva carpeta/ivancruz.0000.png'
+    ]
   },
   {
     id: '4',
-    title: 'Fachada Urbana',
-    category: 'Reforma',
-    year: '2022',
-    description: 'Reforma integral de fachada en edificio histórico del centro. Intervención que dialoga entre lo moderno y lo patrimonial, con nueva envolvente de hormigón y acero de alto contraste.',
-    image: 'Imagenes Pagina Arquitectura/greyscale-low-angle-shot-building-with-cool-design.jpg'
+    title: 'Renders y Visualización',
+    year: '2024',
+    description: 'Visualizaciones arquitectónicas de alta fidelidad que exploran la plasticidad de la luz y el espacio. Cada render captura la esencia del diseño: atmósferas envolventes, texturas realistas y composiciones precisas que anticipan la experiencia espacial. Estas imágenes son herramientas clave para comunicar la visión del proyecto.',
+    images: [
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Renders/Principal.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Renders/6.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Renders/8.jpeg'
+    ]
+  },
+  {
+    id: '5',
+    title: 'Obra Pluvial Chillán',
+    year: '2023',
+    description: 'Infraestructura hidráulica de gran envergadura en Chillán, Chile, que demuestra la capacidad técnica del estudio. El proyecto optimiza el drenaje urbano mediante canales de hormigón armado y pendientes calculadas, reduciendo riesgos de inundación. La ejecución en obra combina maquinaria pesada con un control de calidad riguroso.',
+    images: [
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Pruvial en Chillan, Chile/tractor.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Pruvial en Chillan, Chile/alex tractor.jpeg'
+    ]
+  },
+  {
+    id: '6',
+    title: 'Construcción en Seco Chillán',
+    year: '2024',
+    description: 'Sistema constructivo eficiente basado en estructuras metálicas ligeras, aplicado en Chillán, Chile. La rapidez de montaje y la limpieza en obra son sus principales ventajas, sin sacrificar calidad ni resistencia. Esta solución sostenible reduce plazos y costes, ideal para proyectos que requieren flexibilidad y alto rendimiento.',
+    images: [
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Construcción en seco. Chillan, Chile/estructuras.jpeg'
+    ]
   }
 ];
 
 function getProjects() {
   const stored = localStorage.getItem(STORAGE_KEY);
   if (stored) {
-    try { return JSON.parse(stored); } catch { return DEFAULT_PROJECTS; }
+    try {
+      const parsed = JSON.parse(stored);
+      // Force migration if stored projects are in the old format (without images array or less items)
+      if (!Array.isArray(parsed) || parsed.length === 0 || !parsed[0].images) {
+        saveProjects(DEFAULT_PROJECTS);
+        return DEFAULT_PROJECTS;
+      }
+      return parsed;
+    } catch {
+      return DEFAULT_PROJECTS;
+    }
   }
   return DEFAULT_PROJECTS;
 }
@@ -51,20 +100,19 @@ function saveProjects(projects) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
 }
 
-function renderPortfolio(filter = 'todos') {
+function renderPortfolio() {
   const container = document.getElementById('portfolio-grid');
   if (!container) return;
   const projects = getProjects();
-  const filtered = filter === 'todos'
-    ? projects
-    : projects.filter(p => p.category.toLowerCase() === filter.toLowerCase());
 
-  container.innerHTML = filtered.length === 0
-    ? '<p class="portfolio__empty">No hay proyectos en esta categoría.</p>'
-    : filtered.map(p => `
+  container.innerHTML = projects.length === 0
+    ? '<p class="portfolio__empty">No hay proyectos.</p>'
+    : projects.map(p => `
       <article class="portfolio-card reveal" onclick='openProjectModal(${JSON.stringify(p)})' data-hover>
         <div class="portfolio-card__img-wrap">
-          <img src="${p.image}" alt="${p.title}" class="portfolio-card__img" loading="lazy">
+          ${p.images.map((img, idx) => `
+            <img src="${img}" alt="${p.title}" class="portfolio-card__img ${idx === 0 ? 'active' : ''}" loading="lazy">
+          `).join('')}
           <div class="portfolio-card__overlay">
             <span class="portfolio-card__view">Ver proyecto
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -72,12 +120,14 @@ function renderPortfolio(filter = 'todos') {
           </div>
         </div>
         <div class="portfolio-card__body">
-          <span class="portfolio-card__cat t-label">${p.category}</span>
           <h3 class="portfolio-card__title">${p.title}</h3>
           <span class="portfolio-card__year">${p.year || ''}</span>
         </div>
       </article>
     `).join('');
+
+  // init hover rotation
+  initHoverSlides();
 
   // re-observe reveal
   container.querySelectorAll('.reveal').forEach((el, i) => {
@@ -91,19 +141,47 @@ function renderPortfolio(filter = 'todos') {
   });
 }
 
+function initHoverSlides() {
+  document.querySelectorAll('.portfolio-card').forEach(card => {
+    const images = card.querySelectorAll('.portfolio-card__img');
+    if (images.length <= 1) return;
+
+    let intervalId = null;
+    let currentIndex = 0;
+
+    const startSlideshow = () => {
+      if (intervalId) clearInterval(intervalId);
+      intervalId = setInterval(() => {
+        images[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].classList.add('active');
+      }, 1500);
+    };
+
+    const stopSlideshow = () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+      images.forEach((img, idx) => {
+        if (idx === 0) {
+          img.classList.add('active');
+        } else {
+          img.classList.remove('active');
+        }
+      });
+      currentIndex = 0;
+    };
+
+    card.addEventListener('mouseenter', startSlideshow);
+    card.addEventListener('mouseleave', stopSlideshow);
+  });
+}
+
 window.openProjectModal = (p) => {
-  openModal({ img: p.image, title: p.title, category: p.category, desc: p.description, year: p.year });
+  openModal({ img: p.images[0], title: p.title, category: '', desc: p.description, year: p.year });
 };
 
-// Filter tabs
 document.addEventListener('DOMContentLoaded', () => {
   renderPortfolio();
-
-  document.querySelectorAll('.portfolio-filter__btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.portfolio-filter__btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderPortfolio(btn.dataset.filter);
-    });
-  });
 });

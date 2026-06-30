@@ -7,13 +7,29 @@ const STOR_KEY = 'los_portfolio';
 
 const DEFAULT_PROJECTS = [
   { id:'1', title:'Residencia Nativa', category:'Residencial', year:'2023', description:'Casa de campo de 380m² integrada al paisaje correntino. Diseño bioclimático con materiales naturales, amplias aberturas y vegetación local. Premio ARQ Award 2023.', image:'assets/img/proyecto-1.png' },
-  { id:'2', title:'Loft Baires', category:'Interiorismo', year:'2023', description:'Reforma integral de loft industrial en Buenos Aires. 220m² de planta libre con materiales premium.', image:'assets/img/proyecto-2.png' },
+  { id:'2', title:'Loft Baires', category:'Espacios', year:'2023', description:'Reforma integral de loft industrial en Buenos Aires. 220m² de planta libre con materiales premium.', image:'assets/img/proyecto-2.png' },
   { id:'3', title:'Torre Meridian', category:'Comercial', year:'2022', description:'Edificio de oficinas corporativas de 12 plantas en Posadas. Certificación LEED Silver.', image:'assets/img/proyecto-3.png' }
 ];
 
 function getProjects() {
   const s = localStorage.getItem(STOR_KEY);
-  if (s) { try { return JSON.parse(s); } catch {} }
+  if (s) {
+    try {
+      let parsed = JSON.parse(s);
+      let migrated = false;
+      parsed = parsed.map(p => {
+        if (p.category === 'Interiorismo') {
+          p.category = 'Espacios';
+          migrated = true;
+        }
+        return p;
+      });
+      if (migrated) {
+        saveProjects(parsed);
+      }
+      return parsed;
+    } catch {}
+  }
   return DEFAULT_PROJECTS;
 }
 function saveProjects(p) { localStorage.setItem(STOR_KEY, JSON.stringify(p)); }
