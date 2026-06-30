@@ -7,58 +7,90 @@ const CAT_STORAGE_KEY = 'los_catalogo';
 const DEFAULT_PRODUCTS = [
   {
     id: '1',
-    name: 'Mesa Río Grande',
-    category: 'Mesas',
-    material: 'Madera sólida de roble',
-    description: 'Mesa de comedor de diseño artesanal en roble macizo. Terminación con aceite natural de tung. Disponible en distintas medidas según requerimiento. Fabricación a medida.',
-    image: 'assets/img/mueble-mesa.png'
+    name: 'Base de sommier con cajonera',
+    category: 'Camas',
+    material: 'Madera y Melamina',
+    description: 'Base de sommier optimizada con cajones inferiores para maximizar el guardado en tu dormitorio. Diseño robusto y funcional.',
+    image: 'Imagenes Pagina Arquitectura/Espacios/Muebles/Base de sommier con cajonera/BAse de somier con cajonera.jpeg'
   },
   {
     id: '2',
-    name: 'Silla Carandaí',
-    category: 'Sillas',
-    material: 'Madera sólida de lenga',
-    description: 'Silla de diseño minimalista en madera de lenga patagónica. Ergonomía estudiada, encastres a cola de milano. Tapizado en lino natural 100% disponible en múltiples colores.',
-    image: 'assets/img/mueble-silla.png'
+    name: 'Juego de comedor',
+    category: 'Comedor',
+    material: 'Madera sólida',
+    description: 'Juego de comedor con mesa y sillas de diseño moderno, perfecto para espacios acogedores y reuniones familiares.',
+    image: 'Imagenes Pagina Arquitectura/Espacios/Muebles/Juego de comedor/juego de comedor.jpeg'
   },
   {
     id: '3',
-    name: 'Estantería Ibera',
-    category: 'Estanterías',
-    material: 'Madera sólida de nogal',
-    description: 'Sistema modular de estanterías en nogal negro. Montaje flotante, fijación oculta. Diseño que combina funcionalidad y estética. Disponible en múltiples configuraciones.',
-    image: 'assets/img/mueble-estanteria.png'
+    name: 'Mesa de escritorio de dormitorio',
+    category: 'Escritorios',
+    material: 'Madera y Melamina',
+    description: 'Escritorio compacto y moderno, ideal para habitaciones o espacios de home office con un diseño limpio.',
+    image: 'Imagenes Pagina Arquitectura/Espacios/Muebles/Mesa escritorio/Mesa de escritorio de dormitorio colores.jpeg'
   },
   {
     id: '4',
-    name: 'Sofá Paraíso',
-    category: 'Sillones',
-    material: 'Estructura de roble y tapizado en lino',
-    description: 'Sofá de diseño contemporáneo con estructura en roble macizo. Tapizado artesanal en lino natural 100% disponible en múltiples colores.',
-    image: 'assets/img/mueble-sofa.png'
+    name: 'Mesa ratona',
+    category: 'Mesas',
+    material: 'Madera',
+    description: 'Mesa ratona de centro con un estilo contemporáneo, perfecta para complementar el living.',
+    image: 'Imagenes Pagina Arquitectura/Espacios/Muebles/Mesa raton/mesa ratona.jpeg'
   },
   {
     id: '5',
-    name: 'Escritorio Litoral',
-    category: 'Escritorios',
-    material: 'Madera sólida de nogal',
-    description: 'Escritorio de diseño minimalista en nogal macizo. Patas de horquilla en acero, superficie amplia con acabado al aceite natural. Ideal para home office y estudios.',
-    image: 'assets/img/mueble-escritorio.png'
+    name: 'Mesa de luz moderna',
+    category: 'Mesas',
+    material: 'Madera',
+    description: 'Mesa de luz flotante y de pie con cajones espaciosos y líneas minimalistas para tu dormitorio.',
+    image: 'Imagenes Pagina Arquitectura/Espacios/Muebles/Mesas de luz/MEsa de luz 2.jpeg'
   },
   {
     id: '6',
-    name: 'Aparador Corrientes',
+    name: 'Muebles de cocina MDF',
+    category: 'Cocina',
+    material: 'MDF y Madera',
+    description: 'Amoblamiento de cocina integral a medida, con bajo mesadas y alacenas en terminación moderna y de alta durabilidad.',
+    image: 'Imagenes Pagina Arquitectura/Espacios/Muebles/Muebles de cocina/Muebles de cocina mdf.jpeg'
+  },
+  {
+    id: '7',
+    name: 'Juego de dormitorio',
+    category: 'Camas',
+    material: 'Madera y Melamina',
+    description: 'Mobiliario integral para dormitorio incluyendo placard y cama, con detalles en texturas cálidas.',
+    image: 'Imagenes Pagina Arquitectura/Espacios/Muebles/Muebles de dormitorio/muebles juedo de dormitorio.jpeg'
+  },
+  {
+    id: '8',
+    name: 'Mueble organizador',
     category: 'Otros',
-    material: 'Madera sólida de roble con detalles en latón',
-    description: 'Aparador de diseño contemporáneo en roble macizo. Detalles en latón, puertas corredizas con guilloqué. Pieza central que aporta calidez y elegancia a cualquier comedor.',
-    image: 'assets/img/mueble-aparador.png'
+    material: 'Madera',
+    description: 'Mueble multiuso ideal para organización en áreas comunes o baños, fabricado con materiales resistentes a la humedad.',
+    image: 'Imagenes Pagina Arquitectura/Espacios/Muebles/Otros/Mueble.jpeg'
+  },
+  {
+    id: '9',
+    name: 'Respaldo con mesas de luz',
+    category: 'Camas',
+    material: 'Melamina',
+    description: 'Respaldo de cama integrado con mesas de luz flotantes, creando un diseño unificado y elegante para la habitación.',
+    image: 'Imagenes Pagina Arquitectura/Espacios/Muebles/Respaldo de cama con mesas de luz/respaldo de cama con mesas de luz en melamina.jpeg'
   }
 ];
 
 function getProducts() {
   const stored = localStorage.getItem(CAT_STORAGE_KEY);
   if (stored) {
-    try { return JSON.parse(stored); } catch { return DEFAULT_PRODUCTS; }
+    try { 
+      const parsed = JSON.parse(stored); 
+      // Migración forzada
+      if (!Array.isArray(parsed) || parsed.length === 0 || parsed[0].name === 'Mesa Río Grande') {
+        saveProducts(DEFAULT_PRODUCTS);
+        return DEFAULT_PRODUCTS;
+      }
+      return parsed;
+    } catch { return DEFAULT_PRODUCTS; }
   }
   return DEFAULT_PRODUCTS;
 }

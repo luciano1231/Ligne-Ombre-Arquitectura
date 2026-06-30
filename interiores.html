@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carolina Cabral Studio — Diseño de Interiores & Muebles</title>
-  <meta name="description" content="Diseño de interiores y fabricación artesanal de muebles de madera en Corrientes. Carolina Cabral Studio.">
+  <title>Carolina Cabral Studio — Diseño de Espacios & Muebles</title>
+  <meta name="description" content="Diseño de espacios y fabricación artesanal de muebles de madera en Corrientes. Carolina Cabral Studio.">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/interiores.css">
 </head>
@@ -36,13 +36,13 @@
   <!-- HERO -->
   <section class="int-hero" id="inicio">
     <div class="int-hero__bg">
-      <img src="assets/img/hero-int.png" alt="Diseño de Interiores" class="int-hero__img" data-parallax="0.25">
+      <img src="assets/img/hero-int.png" alt="Diseño de Espacios" class="int-hero__img" data-parallax="0.25">
       <div class="int-hero__overlay"></div>
     </div>
     <div class="int-hero__content">
       <span class="t-label int-hero__eyebrow reveal">Diseño & Fabricación artesanal · Corrientes</span>
       <h1 class="int-hero__title reveal" data-delay="100">Espacios que <em>inspiran.</em><br>Muebles que <em>perduran.</em></h1>
-      <p class="int-hero__sub reveal" data-delay="200">Diseño de interiores y fabricación artesanal de muebles de madera.</p>
+      <p class="int-hero__sub reveal" data-delay="200">Diseño de espacios y fabricación artesanal de muebles de madera.</p>
       <div class="int-hero__actions reveal" data-delay="300">
         <a href="#catalogo" class="btn btn--primary">Ver catálogo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         <a href="https://wa.me/5491133306242?text=Hola%20Carolina!" target="_blank" class="btn btn--outline">Cotizar por WhatsApp</a>
@@ -76,17 +76,36 @@
     <div class="container">
       <div class="int-valores__grid">
         <div class="int-valor reveal">
-          <span class="int-valor__icon">🌳</span>
+          <div class="int-valor__icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" width="40">
+              <rect x="12" y="12" width="24" height="24" rx="2" />
+              <line x1="12" y1="24" x2="36" y2="24" />
+              <line x1="24" y1="12" x2="24" y2="36" />
+            </svg>
+          </div>
           <h3 class="int-valor__title">Madera Sólida</h3>
           <p class="int-valor__desc">Trabajamos exclusivamente con maderas nobles: roble, nogal, lenga y cedro. Sin aglomerados ni atajos.</p>
         </div>
         <div class="int-valor reveal" data-delay="100">
-          <span class="int-valor__icon">✋</span>
+          <div class="int-valor__icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" width="40">
+              <path d="M14 34l12-12m-6 10l6-6m12-14a4 4 0 00-5.66 0l-1.41 1.41a4 4 0 000 5.66l1.41 1.41a4 4 0 005.66 0l1.41-1.41a4 4 0 000-5.66z" />
+              <path d="M8 40l6-6" />
+            </svg>
+          </div>
           <h3 class="int-valor__title">Fabricación Artesanal</h3>
           <p class="int-valor__desc">Cada mueble es una pieza única, fabricada a mano en nuestro taller con técnicas tradicionales de ebanistería.</p>
         </div>
         <div class="int-valor reveal" data-delay="200">
-          <span class="int-valor__icon">📐</span>
+          <div class="int-valor__icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" width="40">
+              <polyline points="10,38 10,10 38,10" />
+              <line x1="10" y1="20" x2="16" y2="20" />
+              <line x1="10" y1="30" x2="16" y2="30" />
+              <line x1="20" y1="10" x2="20" y2="16" />
+              <line x1="30" y1="10" x2="30" y2="16" />
+            </svg>
+          </div>
           <h3 class="int-valor__title">Diseño a Medida</h3>
           <p class="int-valor__desc">Adaptamos cada pieza a tus espacios y necesidades. Tu mueble, tu medida exacta, tu historia.</p>
         </div>
@@ -105,10 +124,10 @@
       </div>
       <div class="catalogo-filter reveal" data-delay="100">
         <button class="catalogo-filter__btn active" data-filter="todos">Todos</button>
+        <button class="catalogo-filter__btn" data-filter="Camas">Camas</button>
+        <button class="catalogo-filter__btn" data-filter="Comedor">Comedor</button>
+        <button class="catalogo-filter__btn" data-filter="Cocina">Cocina</button>
         <button class="catalogo-filter__btn" data-filter="Mesas">Mesas</button>
-        <button class="catalogo-filter__btn" data-filter="Sillas">Sillas</button>
-        <button class="catalogo-filter__btn" data-filter="Estanterías">Estanterías</button>
-        <button class="catalogo-filter__btn" data-filter="Sillones">Sillones</button>
         <button class="catalogo-filter__btn" data-filter="Escritorios">Escritorios</button>
         <button class="catalogo-filter__btn" data-filter="Otros">Otros</button>
       </div>
@@ -145,6 +164,27 @@
           <h3 class="int-diseno-card__title">Reforma & Coordinación</h3>
           <p class="int-diseno-card__desc">Coordinación de reformas trabajando junto a Ligne & Ombre Studio para soluciones integrales de arquitectura y diseño de espacios.</p>
         </div>
+      </div>
+      
+      <div class="sec-header reveal" style="margin-top: 60px;">
+        <h3 class="sec-header__title" style="font-size: 2rem;">Proyectos <em>Destacados</em></h3>
+        <span class="sec-header__line"></span>
+      </div>
+      
+      <div class="portfolio-grid" style="margin-top: 40px;">
+        <article class="portfolio-card reveal">
+          <div class="portfolio-card__img-wrap" style="padding-top: 60%;">
+            <img src="Imagenes Pagina Arquitectura/Espacios/Interiorismo/Diseño de interior Gimnasio, Corrientes capital 2026/gim1.jpeg" alt="Diseño Gimnasio" class="portfolio-card__img active" style="object-fit: cover;">
+          </div>
+          <div class="portfolio-card__body">
+            <h3 class="portfolio-card__title">Diseño de interior Gimnasio</h3>
+            <div class="portfolio-card__meta">
+              <span class="portfolio-card__location">Corrientes Capital</span>
+              <span class="portfolio-card__separator">·</span>
+              <span class="portfolio-card__year">2026</span>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>

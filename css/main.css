@@ -454,8 +454,8 @@ body:hover .cursor__circle { opacity: 1; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
-  .nav__logo img { height: 38px; }
-  .nav__logo svg { height: 38px; }
+  .nav__logo img { height: 28px; }
+  .nav__logo svg { height: 28px; }
   .nav__links { display: none; }
   .nav__burger { display: flex; }
   body { cursor: auto; }
