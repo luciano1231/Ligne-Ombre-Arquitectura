@@ -38,7 +38,7 @@
 
 /* ── RESET ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
 body {
   font-family: var(--font-body);
   color: var(--clr-text-dark);
@@ -182,7 +182,7 @@ body:hover .cursor__circle { opacity: 1; }
   position: fixed;
   inset: 0;
   background: var(--clr-forest-dark);
-  z-index: 99;
+  z-index: 1000;
   flex-direction: column;
   align-items: center;
   justify-content: center;
