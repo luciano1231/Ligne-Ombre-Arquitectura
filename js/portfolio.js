@@ -40,13 +40,9 @@ const DEFAULT_PROJECTS = [
     year: '2023',
     description: 'Un espacio para eventos que destaca por su diseño escultórico y su integración con el paisaje. La cubierta singular, de hormigón visto, protege amplios espacios acristalados que difuminan los límites entre interior y exterior. Materiales como la madera y la piedra aportan calidez, mientras que la ejecución precisa garantiza durabilidad y sofisticación.',
     images: [
-      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Nueva carpeta/sombrero.jpg',
-      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Nueva carpeta/sombrero2.jpg',
-      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Nueva carpeta/sombrero3.jpg',
-      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Nueva carpeta/sombrero4.jpg',
-      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Nueva carpeta/sombrero5.jpg',
-      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Nueva carpeta/fachadaGuille.0001.png',
-      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Nueva carpeta/ivancruz.0000.png'
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Nueva carpeta/sombrero.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Nueva carpeta/sombrero2.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Nueva carpeta/sombrero3.jpeg'
     ]
   },
   {
