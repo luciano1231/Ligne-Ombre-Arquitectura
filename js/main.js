@@ -129,18 +129,74 @@ document.addEventListener('DOMContentLoaded', () => {
   counters.forEach(c => counterObserver.observe(c));
 
   /* ── MODAL ── */
+  let currentModalImages = [];
+  let currentModalIndex = 0;
+
   window.openModal = (data) => {
     const overlay = document.querySelector('.modal-overlay');
     if (!overlay) return;
-    overlay.querySelector('.modal__img').src = data.img;
-    overlay.querySelector('.modal__img').alt = data.title;
+
+    currentModalImages = data.images || (data.img ? [data.img] : []);
+    currentModalIndex = 0;
+
+    const imgEl = overlay.querySelector('.modal__img');
+    const prevBtn = overlay.querySelector('.modal__prev');
+    const nextBtn = overlay.querySelector('.modal__next');
+    
+    if (currentModalImages.length > 0) {
+      imgEl.src = currentModalImages[currentModalIndex];
+    }
+    imgEl.alt = data.title;
+    
+    if (prevBtn && nextBtn) {
+      const showNav = currentModalImages.length > 1;
+      prevBtn.style.display = showNav ? 'flex' : 'none';
+      nextBtn.style.display = showNav ? 'flex' : 'none';
+    }
+
     overlay.querySelector('.modal__cat').textContent  = data.category;
     overlay.querySelector('.modal__title').textContent = data.title;
     overlay.querySelector('.modal__desc').textContent  = data.desc;
     if (overlay.querySelector('.modal__year'))
       overlay.querySelector('.modal__year').textContent = data.year || '';
+    
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+  };
+
+  window.updateModalImage = (direction = 'next') => {
+    const overlay = document.querySelector('.modal-overlay');
+    if (!overlay || currentModalImages.length === 0) return;
+    const imgEl = overlay.querySelector('.modal__img');
+    
+    imgEl.style.transition = 'transform 0.25s ease, opacity 0.25s ease';
+    imgEl.style.opacity = '0';
+    imgEl.style.transform = direction === 'next' ? 'translateX(-30px)' : 'translateX(30px)';
+    
+    setTimeout(() => {
+      imgEl.src = currentModalImages[currentModalIndex];
+      imgEl.style.transition = 'none';
+      imgEl.style.transform = direction === 'next' ? 'translateX(30px)' : 'translateX(-30px)';
+      
+      // Force reflow
+      void imgEl.offsetWidth;
+      
+      imgEl.style.transition = 'transform 0.25s ease, opacity 0.25s ease';
+      imgEl.style.opacity = '1';
+      imgEl.style.transform = 'translateX(0)';
+    }, 250);
+  };
+
+  window.prevModalImage = () => {
+    if (currentModalImages.length <= 1) return;
+    currentModalIndex = (currentModalIndex - 1 + currentModalImages.length) % currentModalImages.length;
+    updateModalImage('prev');
+  };
+
+  window.nextModalImage = () => {
+    if (currentModalImages.length <= 1) return;
+    currentModalIndex = (currentModalIndex + 1) % currentModalImages.length;
+    updateModalImage('next');
   };
 
   window.closeModal = () => {
@@ -148,8 +204,31 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
   };
 
-  document.querySelector('.modal-overlay')?.addEventListener('click', e => {
+  document.addEventListener('click', e => {
     if (e.target.classList.contains('modal-overlay')) window.closeModal();
+  });
+
+  /* SWIPE LOGIC */
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  const handleSwipe = () => {
+    const threshold = 50;
+    if (touchEndX < touchStartX - threshold) window.nextModalImage();
+    if (touchEndX > touchStartX + threshold) window.prevModalImage();
+  };
+
+  document.addEventListener('touchstart', e => {
+    if (e.target.classList.contains('modal__img')) {
+      touchStartX = e.changedTouches[0].screenX;
+    }
+  });
+  
+  document.addEventListener('touchend', e => {
+    if (e.target.classList.contains('modal__img')) {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }
   });
 
   /* ── SMOOTH ANCHOR SCROLL ── */

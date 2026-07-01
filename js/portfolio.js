@@ -215,7 +215,7 @@ function initHoverSlides() {
 }
 
 window.openProjectModal = (p) => {
-  openModal({ img: p.images[0], title: p.title, category: p.location || '', desc: p.description, year: p.year });
+  openModal({ images: p.images, title: p.title, category: p.location || '', desc: p.description, year: p.year });
 };
 
 document.addEventListener('DOMContentLoaded', () => {

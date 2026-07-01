@@ -116,8 +116,8 @@ function renderCatalog(filter = 'todos') {
     ? '<p class="catalogo__empty">No hay productos en esta categoría.</p>'
     : filtered.map(p => `
       <article class="product-card reveal" data-hover>
-        <div class="product-card__img-wrap">
-          <img src="${p.image}" alt="${p.name}" class="product-card__img" loading="lazy">
+        <div class="product-card__img-wrap" onclick='openProductModal(${JSON.stringify(p)})' style="cursor:pointer">
+          <img src="${p.images ? p.images[0] : p.image}" alt="${p.name}" class="product-card__img" loading="lazy">
           <span class="product-card__cat t-label">${p.category}</span>
         </div>
         <div class="product-card__body">
@@ -142,6 +142,15 @@ function renderCatalog(filter = 'todos') {
     obs.observe(el);
   });
 }
+
+window.openProductModal = (p) => {
+  openModal({ 
+    images: p.images || [p.image], 
+    title: p.name, 
+    category: p.category, 
+    desc: p.description 
+  });
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   renderCatalog();

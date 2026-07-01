@@ -394,7 +394,7 @@ body:hover .cursor__circle { opacity: 1; }
   transition: transform .4s cubic-bezier(.22,1,.36,1);
 }
 .modal-overlay.open .modal { transform: scale(1); }
-.modal__img { width: 100%; height: 400px; object-fit: cover; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+.modal__img { width: 100%; height: 400px; object-fit: cover; border-radius: var(--radius-lg) var(--radius-lg) 0 0; user-select: none; -webkit-user-drag: none; }
 .modal__body { padding: 36px; }
 .modal__cat {
   font-size: .7rem;
@@ -431,6 +431,28 @@ body:hover .cursor__circle { opacity: 1; }
   transition: background var(--transition-fast);
 }
 .modal__close:hover { background: rgba(255,255,255,.25); }
+
+.modal__nav {
+  position: absolute;
+  top: 200px;
+  transform: translateY(-50%);
+  width: 40px; height: 40px;
+  background: rgba(17, 26, 19, 0.5);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+  border: none;
+  z-index: 10;
+}
+.modal__nav:hover { background: rgba(17, 26, 19, 0.8); color: var(--clr-gold); }
+.modal__prev { left: 10px; }
+.modal__next { right: 10px; }
 
 /* ── LOGO EN FONDOS OSCUROS (convertir a blanco) ── */
 .nav__logo img,
