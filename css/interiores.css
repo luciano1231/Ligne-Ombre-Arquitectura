@@ -67,16 +67,16 @@
   margin-bottom: 20px; opacity: .85;
 }
 .int-about__tags {
-  display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px;
+  display: flex; flex-wrap: wrap; gap: 24px; margin-top: 28px;
 }
 .int-about__tags li {
-  padding: 8px 18px;
-  border: 1px solid rgba(38,62,43,.25);
-  border-radius: 100px;
-  font-size: .78rem; color: var(--clr-forest);
-  transition: background var(--transition), color var(--transition);
+  display: flex; align-items: center; gap: 8px;
+  font-size: .85rem; color: var(--clr-forest-dark);
+  font-weight: 500; text-transform: uppercase; letter-spacing: .05em;
 }
-.int-about__tags li:hover { background: var(--clr-forest); color: white; }
+.int-about__tags li svg {
+  color: var(--clr-gold);
+}
 .int-about__img-wrap {
   position: relative; border-radius: var(--radius-lg); overflow: visible;
 }
