@@ -77,6 +77,36 @@ const DEFAULT_PROJECTS = [
     images: [
       'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Construcción en seco. Chillan, Chile/estructuras.jpeg'
     ]
+  },
+  {
+    id: '7',
+    title: 'Parques',
+    location: 'Rancagua, Chile',
+    year: '2018',
+    description: 'Intervención paisajística y diseño de espacios públicos en Rancagua, buscando armonizar la naturaleza con el entorno urbano. El diseño incluye recorridos peatonales y áreas de descanso que promueven la vida al aire libre y la cohesión comunitaria.',
+    images: [
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Parques/Parques.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Parques/parques2.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Parques/parques3.jpeg'
+    ]
+  },
+  {
+    id: '8',
+    title: 'Entrada del Metro Eléctrico',
+    location: 'Santiago de Chile',
+    year: '2019',
+    description: 'Diseño arquitectónico y paisajismo para la entrada de una estación del metro eléctrico en Santiago. El proyecto integra elementos de infraestructura moderna con áreas verdes, mejorando la experiencia del usuario y aportando valor estético al espacio público metropolitano.',
+    images: [
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Entrada del Metro - Santiago de chile/Paisajismo en chile.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Entrada del Metro - Santiago de chile/Paisajismo y entrada de metro en Chile.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Entrada del Metro - Santiago de chile/Paisajismo.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Entrada del Metro - Santiago de chile/alex.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Entrada del Metro - Santiago de chile/alex2.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Entrada del Metro - Santiago de chile/paisajismo en chile 3.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Entrada del Metro - Santiago de chile/paisajismo en chile2.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Entrada del Metro - Santiago de chile/pisos.jpeg',
+      'Imagenes Pagina Arquitectura/Proyectos Arquitectura/Entrada del Metro - Santiago de chile/pisos2.jpeg'
+    ]
   }
 ];
 
@@ -85,8 +115,8 @@ function getProjects() {
   if (stored) {
     try {
       const parsed = JSON.parse(stored);
-      // Force migration if stored projects are in the old format or have different title mapping
-      if (!Array.isArray(parsed) || parsed.length === 0 || !parsed[0].images || parsed[0].title !== 'Barrio Privado' || parsed[0].year !== '2018') {
+      // Force migration if stored projects are in the old format, or length differs
+      if (!Array.isArray(parsed) || parsed.length !== DEFAULT_PROJECTS.length || !parsed[0].images || parsed[0].title !== 'Barrio Privado' || parsed[0].year !== '2018') {
         saveProjects(DEFAULT_PROJECTS);
         return DEFAULT_PROJECTS;
       }
