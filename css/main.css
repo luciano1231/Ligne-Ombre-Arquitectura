@@ -423,6 +423,7 @@ body:hover .cursor__circle { opacity: 1; }
   backdrop-filter: blur(10px);
   border-radius: 50%;
   display: flex;
+  z-index: 20;
   align-items: center;
   justify-content: center;
   color: white;
