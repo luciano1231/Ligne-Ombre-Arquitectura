@@ -92,7 +92,7 @@ const DEFAULT_PROJECTS = [
   },
   {
     id: '8',
-    title: 'Entrada del Metro Eléctrico',
+    title: 'Paisajismo, nueva linea Subte C',
     location: 'Santiago de Chile',
     year: '2019',
     description: 'Diseño arquitectónico y paisajismo para la entrada de una estación del metro eléctrico en Santiago. El proyecto integra elementos de infraestructura moderna con áreas verdes, mejorando la experiencia del usuario y aportando valor estético al espacio público metropolitano.',
