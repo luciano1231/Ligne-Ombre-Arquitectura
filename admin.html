@@ -71,6 +71,25 @@
     .preview-img-wrap .btn-remove-img:hover {
       background: #c0392b;
     }
+    .admin-input, .admin-textarea, select.admin-input {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .admin-header__logo img {
+      height: 36px !important;
+      filter: brightness(0) invert(1);
+      width: auto;
+    }
+    @media (max-width: 768px) {
+      .admin-grid-2 {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+      }
+      .admin-card {
+        padding: 24px 16px !important;
+      }
+    }
   </style>
 </head>
 <body class="admin-body">
@@ -95,7 +114,7 @@
     <header class="admin-header">
       <div class="admin-header__inner">
         <a href="index.html" class="admin-header__logo">
-          <img src="assets/logo.svg" alt="Logo" style="height:48px">
+          <img src="assets/logo.svg" alt="Logo">
         </a>
         <h2 class="admin-header__title">Panel de Control General</h2>
         <div class="admin-header__actions">
