@@ -152,14 +152,8 @@
         <span class="sec-header__line"></span>
         <p class="int-catalogo__sub">Piezas de diseño artesanal en madera sólida. Cada mueble se cotiza a medida — sin precios fijos.</p>
       </div>
-      <div class="catalogo-filter reveal" data-delay="100">
-        <button class="catalogo-filter__btn active" data-filter="todos">Todos</button>
-        <button class="catalogo-filter__btn" data-filter="Camas">Camas</button>
-        <button class="catalogo-filter__btn" data-filter="Comedor">Comedor</button>
-        <button class="catalogo-filter__btn" data-filter="Cocina">Cocina</button>
-        <button class="catalogo-filter__btn" data-filter="Mesas">Mesas</button>
-        <button class="catalogo-filter__btn" data-filter="Escritorios">Escritorios</button>
-        <button class="catalogo-filter__btn" data-filter="Otros">Otros</button>
+      <div class="catalogo-filter reveal" id="catalogo-filter-container" data-delay="100">
+        <!-- Renderizado dinámico desde catalogo.js -->
       </div>
       <div class="catalogo-grid" id="catalogo-grid"></div>
     </div>
@@ -201,48 +195,8 @@
         <span class="sec-header__line"></span>
       </div>
       
-      <div class="portfolio-grid" style="margin-top: 40px;">
-        <article class="portfolio-card reveal">
-          <div class="portfolio-card__img-wrap" style="padding-top: 60%;">
-            <img src="Imagenes Pagina Arquitectura/Espacios/Interiorismo/Diseño de interior Gimnasio, Corrientes capital 2026/gim1.jpeg" alt="Diseño Gimnasio" class="portfolio-card__img active" style="object-fit: cover;">
-          </div>
-          <div class="portfolio-card__body">
-            <h3 class="portfolio-card__title">Diseño de interior Gimnasio</h3>
-            <div class="portfolio-card__meta">
-              <span class="portfolio-card__location">Corrientes Capital</span>
-              <span class="portfolio-card__separator">·</span>
-              <span class="portfolio-card__year">2026</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-delay="100">
-          <div class="portfolio-card__img-wrap" style="padding-top: 60%;">
-            <img src="assets/img/oficina_interior.png" alt="Oficina Corporativa" class="portfolio-card__img active" style="object-fit: cover;">
-          </div>
-          <div class="portfolio-card__body">
-            <h3 class="portfolio-card__title">Oficina Corporativa Litoral</h3>
-            <div class="portfolio-card__meta">
-              <span class="portfolio-card__location">Resistencia, Chaco</span>
-              <span class="portfolio-card__separator">·</span>
-              <span class="portfolio-card__year">2025</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="portfolio-card reveal" data-delay="200">
-          <div class="portfolio-card__img-wrap" style="padding-top: 60%;">
-            <img src="assets/img/cafe_interior.png" alt="Café Boutique" class="portfolio-card__img active" style="object-fit: cover;">
-          </div>
-          <div class="portfolio-card__body">
-            <h3 class="portfolio-card__title">Café Boutique Corrientes</h3>
-            <div class="portfolio-card__meta">
-              <span class="portfolio-card__location">Corrientes Capital</span>
-              <span class="portfolio-card__separator">·</span>
-              <span class="portfolio-card__year">2025</span>
-            </div>
-          </div>
-        </article>
+      <div class="portfolio-grid" id="interiores-projects-grid" style="margin-top: 40px;">
+        <!-- Renderizado dinámico desde catalogo.js -->
       </div>
     </div>
   </section>
@@ -318,7 +272,7 @@
         <a href="#catalogo">Catálogo</a>
         <a href="#diseno">Servicios</a>
         <a href="index.html">Ligne & Ombre — Arquitectura</a>
-        <a href="admin-muebles.html" style="opacity:.3">Admin</a>
+        <a href="admin.html" style="opacity:.3">Admin</a>
       </nav>
     </div>
     <div class="footer__copy">

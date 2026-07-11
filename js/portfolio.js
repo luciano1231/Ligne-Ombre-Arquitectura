@@ -115,16 +115,12 @@ function getProjects() {
   if (stored) {
     try {
       const parsed = JSON.parse(stored);
-      // Force migration if stored projects are in the old format, or length differs
-      if (!Array.isArray(parsed) || parsed.length !== DEFAULT_PROJECTS.length || !parsed[0].images || parsed[0].title !== 'Barrio Privado' || parsed[0].year !== '2018') {
-        saveProjects(DEFAULT_PROJECTS);
-        return DEFAULT_PROJECTS;
+      if (Array.isArray(parsed)) {
+        return parsed;
       }
-      return parsed;
-    } catch {
-      return DEFAULT_PROJECTS;
-    }
+    } catch {}
   }
+  saveProjects(DEFAULT_PROJECTS);
   return DEFAULT_PROJECTS;
 }
 

@@ -79,24 +79,92 @@ const DEFAULT_PRODUCTS = [
   }
 ];
 
+const CAT_KEYS_STORAGE = 'los_muebles_categorias';
+
+const DEFAULT_CATEGORIES = [
+  { id: 'cat_1', name: 'Camas' },
+  { id: 'cat_2', name: 'Comedor' },
+  { id: 'cat_3', name: 'Cocina' },
+  { id: 'cat_4', name: 'Mesas' },
+  { id: 'cat_5', name: 'Escritorios' },
+  { id: 'cat_6', name: 'Otros' }
+];
+
+function getCategories() {
+  const stored = localStorage.getItem(CAT_KEYS_STORAGE);
+  if (stored) {
+    try {
+      const parsed = JSON.parse(stored);
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+    } catch {}
+  }
+  saveCategories(DEFAULT_CATEGORIES);
+  return DEFAULT_CATEGORIES;
+}
+
+function saveCategories(categories) {
+  localStorage.setItem(CAT_KEYS_STORAGE, JSON.stringify(categories));
+}
+
 function getProducts() {
   const stored = localStorage.getItem(CAT_STORAGE_KEY);
   if (stored) {
     try { 
       const parsed = JSON.parse(stored); 
-      // Migración forzada
-      if (!Array.isArray(parsed) || parsed.length === 0 || parsed[0].name === 'Mesa Río Grande') {
-        saveProducts(DEFAULT_PRODUCTS);
-        return DEFAULT_PRODUCTS;
+      if (Array.isArray(parsed)) {
+        return parsed;
       }
-      return parsed;
-    } catch { return DEFAULT_PRODUCTS; }
+    } catch {}
   }
+  saveProducts(DEFAULT_PRODUCTS);
   return DEFAULT_PRODUCTS;
 }
 
 function saveProducts(products) {
   localStorage.setItem(CAT_STORAGE_KEY, JSON.stringify(products));
+}
+
+const DEFAULT_INT_PROJECTS = [
+  {
+    id: 'int_1',
+    title: 'Diseño de interior Gimnasio',
+    location: 'Corrientes Capital',
+    year: '2026',
+    description: 'Diseño integral de interior para gimnasio en Corrientes Capital. Espacios pensados para el dinamismo, el entrenamiento cómodo y una estética enérgica.',
+    images: ['Imagenes Pagina Arquitectura/Espacios/Interiorismo/Diseño de interior Gimnasio, Corrientes capital 2026/gim1.jpeg']
+  },
+  {
+    id: 'int_2',
+    title: 'Oficina Corporativa Litoral',
+    location: 'Resistencia, Chaco',
+    year: '2025',
+    description: 'Diseño de oficinas modernas enfocadas en la productividad, la comodidad del equipo y la identidad de marca de la empresa.',
+    images: ['assets/img/oficina_interior.png']
+  },
+  {
+    id: 'int_3',
+    title: 'Café Boutique Corrientes',
+    location: 'Corrientes Capital',
+    year: '2025',
+    description: 'Ambiente cálido y acogedor diseñado a medida para una cafetería boutique con detalles artesanales en madera sólida.',
+    images: ['assets/img/cafe_interior.png']
+  }
+];
+
+function getInterioresProjects() {
+  const stored = localStorage.getItem('los_interiores_proyectos');
+  if (stored) {
+    try {
+      const parsed = JSON.parse(stored);
+      if (Array.isArray(parsed)) return parsed;
+    } catch {}
+  }
+  saveInterioresProjects(DEFAULT_INT_PROJECTS);
+  return DEFAULT_INT_PROJECTS;
+}
+
+function saveInterioresProjects(projects) {
+  localStorage.setItem('los_interiores_proyectos', JSON.stringify(projects));
 }
 
 function buildWAMessage(product) {
@@ -152,14 +220,84 @@ window.openProductModal = (p) => {
   });
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  renderCatalog();
+if (!window.openProjectModal) {
+  window.openProjectModal = (p) => {
+    openModal({ 
+      images: p.images || [p.image], 
+      title: p.title, 
+      category: p.location || '', 
+      desc: p.description || '', 
+      year: p.year || '' 
+    });
+  };
+}
 
-  document.querySelectorAll('.catalogo-filter__btn').forEach(btn => {
+function renderInterioresProjects() {
+  const container = document.getElementById('interiores-projects-grid');
+  if (!container) return;
+  const projects = getInterioresProjects();
+
+  container.innerHTML = projects.length === 0
+    ? '<p class="portfolio__empty">No hay proyectos de interiorismo.</p>'
+    : projects.map(p => `
+      <article class="portfolio-card reveal" onclick='openProjectModal(${JSON.stringify(p)})' style="cursor:pointer">
+        <div class="portfolio-card__img-wrap" style="padding-top: 60%; position: relative; overflow: hidden;">
+          ${(p.images || [p.image]).map((img, idx) => `
+            <img src="${img}" alt="${p.title}" class="portfolio-card__img ${idx === 0 ? 'active' : ''}" loading="lazy" style="object-fit: cover; position: absolute; top:0; left:0; width:100%; height:100%;">
+          `).join('')}
+          <div class="portfolio-card__overlay">
+            <span class="portfolio-card__view">Ver proyecto
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+        <div class="portfolio-card__body">
+          <h3 class="portfolio-card__title">${p.title}</h3>
+          <div class="portfolio-card__meta">
+            ${p.location ? `<span class="portfolio-card__location">${p.location}</span>` : ''}
+            ${p.location && p.year ? '<span class="portfolio-card__separator">·</span>' : ''}
+            <span class="portfolio-card__year">${p.year || ''}</span>
+          </div>
+        </div>
+      </article>
+    `).join('');
+
+  // re-observe reveal
+  container.querySelectorAll('.reveal').forEach((el, i) => {
+    el.dataset.delay = i * 100;
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); obs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1 });
+    obs.observe(el);
+  });
+}
+
+function renderCategoryFilters() {
+  const container = document.getElementById('catalogo-filter-container');
+  if (!container) return;
+  
+  const categories = getCategories();
+  
+  container.innerHTML = `
+    <button class="catalogo-filter__btn active" data-filter="todos">Todos</button>
+    ${categories.map(c => `
+      <button class="catalogo-filter__btn" data-filter="${c.name}">${c.name}</button>
+    `).join('')}
+  `;
+  
+  container.querySelectorAll('.catalogo-filter__btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.catalogo-filter__btn').forEach(b => b.classList.remove('active'));
+      container.querySelectorAll('.catalogo-filter__btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       renderCatalog(btn.dataset.filter);
     });
   });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderCategoryFilters();
+  renderCatalog();
+  renderInterioresProjects();
 });
