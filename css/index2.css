@@ -1,43 +1,32 @@
 /* ==========================================================
    LIGNE & OMBRE STUDIO — index2.css
-   Variante del home: el video del hero avanza con el scroll
-   (scroll-scrubbing) hasta que termina, y recién ahí sigue
-   el resto de la página.
+   Variante del home: al llegar al hero, el scroll NO mueve la
+   pagina: se "engancha" y hace avanzar el video. Recien cuando
+   el video termina, el scroll libera y sigue el resto del sitio.
    ========================================================== */
 
-/* Largo de la "pista" de scroll que reproduce el video.
-   500 = 5 alturas de pantalla. Más alto = el video avanza más
-   lento y hay que scrollear más para terminarlo. Ajustá solo
-   este número para calibrar la sensación. */
-:root {
-  --hero-scroll-vh: 500;
-}
-
-/* La sección deja de ser una pantalla fija y pasa a ser un
-   carril largo por el que scrolleamos. */
+/* El hero vuelve a ser una sola pantalla (no hay carril largo). */
 .hero--scroll {
   position: relative;
-  height: calc(var(--hero-scroll-vh) * 1vh);
-  min-height: 0;
+  height: 100vh;
+  min-height: 700px;
   padding: 0;
   display: block;
-  overflow: visible;
+  overflow: hidden;
 }
 
-/* El contenido del hero queda "pegado" en pantalla mientras
-   dura el carril de scroll. */
+/* Capa que contiene el video + el contenido, alineada abajo
+   igual que el hero original. */
 .hero__sticky {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  min-height: 640px;
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: flex-end;
   padding: 0 5vw clamp(60px, 10vh, 120px);
   overflow: hidden;
 }
 
-/* Video de fondo: sin parallax, controlado por JS. */
+/* Video de fondo: controlado por JS, sin parallax. */
 .hero--scroll .hero__video {
   position: absolute;
   inset: 0;
@@ -45,26 +34,81 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  will-change: contents;
 }
 
-/* Mientras el video corre con el scroll, el "hint" de scroll
-   no aporta: lo suavizamos al llegar al final. */
-.hero--scroll .hero__scroll-hint {
+/* Barra de progreso del video (0 -> 100% mientras se scrollea
+   sobre el hero). */
+.hero__vprogress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--clr-gold, #c9a96e);
+  z-index: 3;
   transition: opacity .4s ease;
 }
-.hero--scroll.is-finished .hero__scroll-hint {
+.hero--scroll.is-released .hero__vprogress {
+  opacity: 0;
+}
+
+/* Boton para saltar la intro (aparece mientras el video esta
+   enganchado; garantiza que nadie quede "atrapado"). */
+.hero__skip {
+  position: absolute;
+  bottom: 40px;
+  left: 5vw;
+  z-index: 4;
+  background: transparent;
+  border: 1px solid rgba(232, 224, 208, .35);
+  color: rgba(232, 224, 208, .8);
+  font: inherit;
+  font-size: .7rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 10px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: opacity .4s ease, background .3s ease, border-color .3s ease;
+}
+.hero__skip:hover {
+  background: rgba(232, 224, 208, .12);
+  border-color: rgba(232, 224, 208, .6);
+}
+.hero--scroll.is-released .hero__skip {
   opacity: 0;
   pointer-events: none;
 }
 
+/* El hint de scroll del hero original: lo ocultamos al liberar. */
+.hero--scroll .hero__scroll-hint {
+  transition: opacity .4s ease;
+}
+.hero--scroll.is-released .hero__scroll-hint {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Mientras el scroll esta "enganchado" bloqueamos el movimiento
+   nativo de la pagina. */
+html.hero-lock,
+html.hero-lock body {
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
 /* Accesibilidad: si el usuario pide menos movimiento, no
-   forzamos el scrubbing — mostramos el primer frame quieto. */
+   secuestramos el scroll. Mostramos el primer frame quieto y la
+   pagina se comporta normal. */
 @media (prefers-reduced-motion: reduce) {
-  .hero--scroll {
-    height: 100vh;
+  html.hero-lock,
+  html.hero-lock body {
+    overflow: auto;
+    touch-action: auto;
   }
-  .hero__sticky {
-    position: relative;
+  .hero__skip,
+  .hero__vprogress {
+    display: none;
   }
 }
