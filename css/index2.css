@@ -1,0 +1,70 @@
+/* ==========================================================
+   LIGNE & OMBRE STUDIO — index2.css
+   Variante del home: el video del hero avanza con el scroll
+   (scroll-scrubbing) hasta que termina, y recién ahí sigue
+   el resto de la página.
+   ========================================================== */
+
+/* Largo de la "pista" de scroll que reproduce el video.
+   500 = 5 alturas de pantalla. Más alto = el video avanza más
+   lento y hay que scrollear más para terminarlo. Ajustá solo
+   este número para calibrar la sensación. */
+:root {
+  --hero-scroll-vh: 500;
+}
+
+/* La sección deja de ser una pantalla fija y pasa a ser un
+   carril largo por el que scrolleamos. */
+.hero--scroll {
+  position: relative;
+  height: calc(var(--hero-scroll-vh) * 1vh);
+  min-height: 0;
+  padding: 0;
+  display: block;
+  overflow: visible;
+}
+
+/* El contenido del hero queda "pegado" en pantalla mientras
+   dura el carril de scroll. */
+.hero__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  min-height: 640px;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 5vw clamp(60px, 10vh, 120px);
+  overflow: hidden;
+}
+
+/* Video de fondo: sin parallax, controlado por JS. */
+.hero--scroll .hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  will-change: contents;
+}
+
+/* Mientras el video corre con el scroll, el "hint" de scroll
+   no aporta: lo suavizamos al llegar al final. */
+.hero--scroll .hero__scroll-hint {
+  transition: opacity .4s ease;
+}
+.hero--scroll.is-finished .hero__scroll-hint {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Accesibilidad: si el usuario pide menos movimiento, no
+   forzamos el scrubbing — mostramos el primer frame quieto. */
+@media (prefers-reduced-motion: reduce) {
+  .hero--scroll {
+    height: 100vh;
+  }
+  .hero__sticky {
+    position: relative;
+  }
+}
